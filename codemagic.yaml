@@ -1,0 +1,18 @@
+workflows:
+  android-workflow:
+    name: Android APK Build
+    max_build_duration: 60
+    environment:
+      vars:
+        PACKAGE_NAME: "com.example.gyrotracker"
+      java: 17
+
+    scripts:
+      - name: Build APK
+        script: |
+          cd android-source
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+    artifacts:
+      - android-source/app/build/outputs/**/*.apk
